@@ -1,0 +1,158 @@
+# Create license text and boilerplate for popular open source licenses
+name: licenses
+parent: default
+
+# NOTE(iiiw):
+# Espanso variables are accessible in later matches, so common variables are
+# declared in the first entry: $ESPANSO_REPO, $ESPANSO_YEAR etc.
+#
+# The vars named "t_*" are used for test purposes only (to bridge formatting
+# differences against the reference). They have no effect on the rendered text.
+
+matches:
+  - trigger: ":lhapa2"
+    replace: |
+      Copyright {{year}} $|$[name of copyright owner]
+
+      Licensed under the Apache License, Version 2.0 (the "License");
+      you may not use this file except in compliance with the License.
+      You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+    force_clipboard: true
+    vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
+      - name: year
+        type: date
+        params:
+          format: "%Y"
+  - trigger: ":lhcapa2"
+    replace: "/*\n{{body}}*/"
+    force_clipboard: true
+    vars:
+      - name: body
+        type: match
+        params:
+          trigger: ":lhapa2"
+  - trigger: ":ltapa2"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: curl -LSs "$ESPANSO_REPO/Apache-2.0.txt"
+          shell: wsl
+  - trigger: ":ltmit"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: |
+            curl -LSs "$ESPANSO_REPO"/MIT.txt \
+                | sed "/^Copyright (c)/ s/<year> /$ESPANSO_YEAR \$\|\$/"
+          shell: wsl
+  - trigger: ":ltbsd3"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: |
+            curl -LSs "$ESPANSO_REPO"/BSD-3-Clause.txt \
+                | sed "/^Copyright (c)/ s/<year> /$ESPANSO_YEAR \$\|\$/"
+          shell: wsl
+  - trigger: ":ltbsd2"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: |
+            curl -LSs "$ESPANSO_REPO"/BSD-2-Clause.txt \
+                | sed "/^Copyright (c)/ s/<year> /$ESPANSO_YEAR \$\|\$/"
+          shell: wsl
+  - trigger: ":lhgpl3"
+    replace: |
+      {{t_indent5}}<one line to give the program's name and a brief idea of what it does.>
+      {{t_indent5}}Copyright (C) {{year}}  $|$<name of author>
+
+      {{t_indent5}}This program is free software: you can redistribute it and/or modify it under
+      {{t_concat}}the terms of the GNU General Public License as published by the Free Software
+      {{t_concat}}Foundation, either version 3 of the License, or (at your option) any later
+      {{t_concat}}version.
+
+      {{t_indent5}}This program is distributed in the hope that it will be useful, but WITHOUT
+      {{t_concat}}ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+      {{t_concat}}FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+      {{t_indent5}}You should have received a copy of the GNU General Public License along with
+      {{t_concat}}this program.  If not, see <http://www.gnu.org/licenses/>.
+    force_clipboard: true
+    vars:
+      - name: t_concat
+        type: echo
+        params:
+          echo: ""
+      - name: t_indent5
+        type: echo
+        params:
+          echo: ""
+  - trigger: ":lhcgpl3"
+    replace: "/*\n{{body}}*/"
+    force_clipboard: true
+    vars:
+      - name: body
+        type: match
+        params:
+          trigger: ":lhgpl3"
+  - trigger: ":ltgpl3"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: curl -LSs "$ESPANSO_REPO"/GPL-3.0-or-later.txt
+          shell: wsl
+  - trigger: ":ltlgp3"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: curl -LSs "$ESPANSO_REPO"/LGPL-3.0-or-later.txt
+          shell: wsl
+  - trigger: ":ltcdd1"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: curl -LSs "$ESPANSO_REPO"/CDDL-1.1.txt
+          shell: wsl
+  - trigger: ":ltepl2"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: curl -LSs "$ESPANSO_REPO"/EPL-2.0.txt
+          shell: wsl
+
