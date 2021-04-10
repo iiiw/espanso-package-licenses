@@ -1,0 +1,11 @@
+name: Lint YAML
+on:
+  push:
+    workflow_run:
+      workflows: []
+jobs:
+  run-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: bewuethr/yamllint-action@v1
+

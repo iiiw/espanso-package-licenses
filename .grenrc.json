@@ -1,0 +1,19 @@
+{
+    "user": "iiiw",
+    "repo": "espanso-package-licenses",
+    "draft": true,
+    "prefix": "v",
+    "ignoreIssuesWith": [
+        "duplicate",
+        "help wanted",
+        "invalid",
+        "wontfix"
+    ],
+    "template": {
+        "issue": "- [{{text}}]({{url}}) {{name}}"
+    },
+    "groupBy": {
+        "Enhancements:": ["enhancement", "internal"],
+        "Bug Fixes:": ["bug"]
+    }
+}

@@ -1,0 +1,65 @@
+name: Test License Data
+on:
+  push:
+    branches:
+      - develop
+defaults:
+  run:
+    shell: bash
+jobs:
+  get-version:
+    runs-on: ubuntu-latest
+    outputs:
+      latest: ${{ steps.latest-version.outputs.VERSION }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Get the latest version
+        id: latest-version
+        working-directory: 'licenses'
+        run: |
+          versions=( $(ls | grep -E '^[0-9]+\.' | sort -rV) )
+          for v in "${versions[@]}"; do
+            if [[ -f "$v/package.yml" ]]; then
+              VERSION="$v"
+              break
+            fi
+          done
+          if [[ -z "$VERSION" ]]; then
+            echo "::error::Cannot get latest version"
+            exit 1
+          fi
+          echo "::set-output name=VERSION::$VERSION"
+  test-config:
+    runs-on: ubuntu-latest
+    needs: get-version
+    env:
+      VERSION: ${{ needs.get-version.outputs.latest }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Test license download
+        id: test-fetch
+        working-directory: 'test'
+        run: |
+          test_file="fetch_license.sh"
+          if [[ ! -f "$test_file" ]]; then
+            echo "::error::Missing test file test/$test_file"
+            exit 1
+          fi
+          ./"$test_file"
+      - name: Test license headers against reference
+        id: test-headers
+        working-directory: 'test'
+        run: |
+          test_file="license_headers_match.pl"
+          test_dep="YAML-Tiny/lib/YAML/Tiny.pm"
+          if [[ ! -f "$test_file" ]]; then
+            echo "::error::Missing test file test/$test_file"
+            exit 1
+          fi
+          if [[ ! -f ../tools/"$test_dep" ]]; then
+            echo "::error::Missing test dependency tools/$test_dep"
+            exit 1
+          fi
+          ./"$test_file" ../licenses/"$VERSION"/package.yml
