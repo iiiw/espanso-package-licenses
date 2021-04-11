@@ -3,9 +3,6 @@ name: licenses
 parent: default
 
 # NOTE(iiiw):
-# Espanso variables are accessible in later matches, so common variables are
-# declared in the first entry: $ESPANSO_REPO, $ESPANSO_YEAR etc.
-#
 # The vars named "t_*" are used for test purposes only (to bridge formatting
 # differences against the reference). They have no effect on the rendered text.
 
@@ -27,10 +24,6 @@ matches:
       limitations under the License.
     force_clipboard: true
     vars:
-      - name: repo
-        type: echo
-        params:
-          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
       - name: year
         type: date
         params:
@@ -47,6 +40,10 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
       - name: text
         type: shell
         params:
@@ -56,6 +53,14 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
+      - name: year
+        type: date
+        params:
+          format: "%Y"
       - name: text
         type: shell
         params:
@@ -67,6 +72,14 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
+      - name: year
+        type: date
+        params:
+          format: "%Y"
       - name: text
         type: shell
         params:
@@ -78,6 +91,14 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
+      - name: year
+        type: date
+        params:
+          format: "%Y"
       - name: text
         type: shell
         params:
@@ -103,6 +124,10 @@ matches:
       {{t_concat}}this program.  If not, see <http://www.gnu.org/licenses/>.
     force_clipboard: true
     vars:
+      - name: year
+        type: date
+        params:
+          format: "%Y"
       - name: t_concat
         type: echo
         params:
@@ -123,6 +148,10 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
       - name: text
         type: shell
         params:
@@ -132,6 +161,10 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
       - name: text
         type: shell
         params:
@@ -141,6 +174,10 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
       - name: text
         type: shell
         params:
@@ -150,6 +187,10 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
       - name: text
         type: shell
         params:

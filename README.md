@@ -73,6 +73,6 @@ espanso install licenses https://github.com/iiiw/espanso-package-licenses --exte
 
 ## Caveats
 
-1\. Licenses are downloaded again each time. Without internet connection the expansion silently fails.
-2\. It may take a few seconds for the cursor to run back to the (owner) placeholder, especially with longer licenses. Do not leave the active window until the cursor has arrived.
-3\. Not tested on Windows. If [WSL](https://docs.microsoft.com/en-us/windows/wsl/) is installed, the needed tools (curl and sed) should be in place. Feedback welcome.
+1. Licenses are downloaded again each time. Without internet connection the expansion silently fails.
+2. It may take a few seconds for the cursor to run back to the (owner) placeholder, especially with longer licenses. Do not leave the active window until the cursor has arrived.
+3. Not tested on Windows. If [WSL](https://docs.microsoft.com/en-us/windows/wsl/) is installed, the needed tools (curl and sed) should be in place. Feedback welcome.
