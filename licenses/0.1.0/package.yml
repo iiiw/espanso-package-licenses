@@ -36,7 +36,7 @@ matches:
         type: match
         params:
           trigger: ":lhapa2"
-  - trigger: ":ltapa2"
+  - trigger: ":lapa2"
     replace: "{{text}}"
     force_clipboard: true
     vars:
@@ -49,7 +49,7 @@ matches:
         params:
           cmd: curl -LSs "$ESPANSO_REPO/Apache-2.0.txt"
           shell: wsl
-  - trigger: ":ltmit"
+  - trigger: ":lmit"
     replace: "{{text}}"
     force_clipboard: true
     vars:
@@ -68,7 +68,7 @@ matches:
             curl -LSs "$ESPANSO_REPO"/MIT.txt \
                 | sed "/^Copyright (c)/ s/<year> /$ESPANSO_YEAR \$\|\$/"
           shell: wsl
-  - trigger: ":ltbsd3"
+  - trigger: ":lbsd3"
     replace: "{{text}}"
     force_clipboard: true
     vars:
@@ -87,7 +87,7 @@ matches:
             curl -LSs "$ESPANSO_REPO"/BSD-3-Clause.txt \
                 | sed "/^Copyright (c)/ s/<year> /$ESPANSO_YEAR \$\|\$/"
           shell: wsl
-  - trigger: ":ltbsd2"
+  - trigger: ":lbsd2"
     replace: "{{text}}"
     force_clipboard: true
     vars:
@@ -144,7 +144,7 @@ matches:
         type: match
         params:
           trigger: ":lhgpl3"
-  - trigger: ":ltgpl3"
+  - trigger: ":lgpl3"
     replace: "{{text}}"
     force_clipboard: true
     vars:
@@ -157,7 +157,7 @@ matches:
         params:
           cmd: curl -LSs "$ESPANSO_REPO"/GPL-3.0-or-later.txt
           shell: wsl
-  - trigger: ":ltlgp3"
+  - trigger: ":llgp3"
     replace: "{{text}}"
     force_clipboard: true
     vars:
@@ -170,7 +170,7 @@ matches:
         params:
           cmd: curl -LSs "$ESPANSO_REPO"/LGPL-3.0-or-later.txt
           shell: wsl
-  - trigger: ":ltcdd1"
+  - trigger: ":lcdd1"
     replace: "{{text}}"
     force_clipboard: true
     vars:
@@ -183,7 +183,7 @@ matches:
         params:
           cmd: curl -LSs "$ESPANSO_REPO"/CDDL-1.1.txt
           shell: wsl
-  - trigger: ":ltepl2"
+  - trigger: ":lepl2"
     replace: "{{text}}"
     force_clipboard: true
     vars:
