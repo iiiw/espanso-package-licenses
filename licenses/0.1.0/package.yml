@@ -7,6 +7,19 @@ parent: default
 # differences against the reference). They have no effect on the rendered text.
 
 matches:
+  - trigger: ":lapa2"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
+      - name: text
+        type: shell
+        params:
+          cmd: curl -LSs "$ESPANSO_REPO/Apache-2.0.txt"
+          shell: wsl
   - trigger: ":lhapa2"
     replace: |
       Copyright {{year}} $|$[name of copyright owner]
@@ -36,38 +49,6 @@ matches:
         type: match
         params:
           trigger: ":lhapa2"
-  - trigger: ":lapa2"
-    replace: "{{text}}"
-    force_clipboard: true
-    vars:
-      - name: repo
-        type: echo
-        params:
-          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
-      - name: text
-        type: shell
-        params:
-          cmd: curl -LSs "$ESPANSO_REPO/Apache-2.0.txt"
-          shell: wsl
-  - trigger: ":lmit"
-    replace: "{{text}}"
-    force_clipboard: true
-    vars:
-      - name: repo
-        type: echo
-        params:
-          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
-      - name: year
-        type: date
-        params:
-          format: "%Y"
-      - name: text
-        type: shell
-        params:
-          cmd: |
-            curl -LSs "$ESPANSO_REPO"/MIT.txt \
-                | sed "/^Copyright (c)/ s/<year> /$ESPANSO_YEAR \$\|\$/"
-          shell: wsl
   - trigger: ":lbsd3"
     replace: "{{text}}"
     force_clipboard: true
@@ -105,6 +86,19 @@ matches:
           cmd: |
             curl -LSs "$ESPANSO_REPO"/BSD-2-Clause.txt \
                 | sed "/^Copyright (c)/ s/<year> /$ESPANSO_YEAR \$\|\$/"
+          shell: wsl
+  - trigger: ":lgpl3"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
+      - name: text
+        type: shell
+        params:
+          cmd: curl -LSs "$ESPANSO_REPO"/GPL-3.0-or-later.txt
           shell: wsl
   - trigger: ":lhgpl3"
     replace: |
@@ -144,19 +138,6 @@ matches:
         type: match
         params:
           trigger: ":lhgpl3"
-  - trigger: ":lgpl3"
-    replace: "{{text}}"
-    force_clipboard: true
-    vars:
-      - name: repo
-        type: echo
-        params:
-          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
-      - name: text
-        type: shell
-        params:
-          cmd: curl -LSs "$ESPANSO_REPO"/GPL-3.0-or-later.txt
-          shell: wsl
   - trigger: ":llgp3"
     replace: "{{text}}"
     force_clipboard: true
@@ -169,6 +150,38 @@ matches:
         type: shell
         params:
           cmd: curl -LSs "$ESPANSO_REPO"/LGPL-3.0-or-later.txt
+          shell: wsl
+  - trigger: ":lmit"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
+      - name: year
+        type: date
+        params:
+          format: "%Y"
+      - name: text
+        type: shell
+        params:
+          cmd: |
+            curl -LSs "$ESPANSO_REPO"/MIT.txt \
+                | sed "/^Copyright (c)/ s/<year> /$ESPANSO_YEAR \$\|\$/"
+          shell: wsl
+  - trigger: ":lmpl2"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: repo
+        type: echo
+        params:
+          echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
+      - name: text
+        type: shell
+        params:
+          cmd: curl -LSs "$ESPANSO_REPO"/MPL-2.0.txt
           shell: wsl
   - trigger: ":lcdd1"
     replace: "{{text}}"
