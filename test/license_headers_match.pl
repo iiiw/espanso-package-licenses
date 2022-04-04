@@ -15,6 +15,7 @@ my $pat_filename_id = qr/([\w.-]+?)\.txt/;                  # filename          
 my $pat_indent      = qr/\{\{(?:t_)?indent(\d{1,2})\}\}/;   # indent placeholder    number of spaces    '{{t_indent4}}'     4
 my $pat_concat      = qr/\{\{t_concat\}\}/;                 # concat marker                             '{{t_concat}}'
 my $pat_cursor      = qr/\$\|\$/;                           # cursor marker                             '$|$'
+my $pat_owner       = qr/\{\{owner\}\}/;                    # owner placeholder                         '{{owner}}'
 my $pat_year        = qr/\{\{year\}\}/;                     # year placeholder                          '{{year}}'
 
 sub main;
@@ -53,6 +54,7 @@ USAGE
         # Modify the hardcoded header to get rid of additional markup and whitespace.
         my $str_b = $_->{replace};
         $str_b    = tr_year($str_b);
+        $str_b    = tr_owner($str_b);
         $str_b    = tr_concat($str_b);
         $str_b    = tr_indent($str_b);
         $str_b    = trim_cursor($str_b);
@@ -91,6 +93,17 @@ sub tr_indent {
     my $str = shift;
     ( my $cnt ) = ( $str =~ /$pat_indent/ );
     $str =~ s/$pat_indent/' ' x $cnt/eg;
+    return $str;
+}
+
+# Restore the owner placeholder.
+sub tr_owner {
+    ( my $str = shift ) =~ s/$pat_owner/<owner>/g;
+    if ($str =~ /Apache License, Version 2\.0/) {
+        $str =~ s/<owner>/[name of copyright owner]/;
+    } elsif ($str =~ /GNU General Public License/) {
+        $str =~ s/<owner>/<name of author>/;
+    }
     return $str;
 }
 

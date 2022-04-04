@@ -1,0 +1,208 @@
+# Espanso package licenses
+#
+# NOTE(iiiw):
+# - The placeholders for <year> and <owner> are substituted, if possible ...
+#   - by the current year
+#   - by the global variable $ESPANSO_LICENSE_OWNER as set e.g. in $CONFIG/match/base.yml
+# - The variables named "t_*" are used for tests. They have no effect on the rendered
+#   text.
+
+global_vars:
+  - name: spdxrepo
+    type: echo
+    params:
+      echo: "https://raw.githubusercontent.com/spdx/license-list-data/master/text"
+  - name: year
+    type: date
+    params:
+      format: "%Y"
+
+matches:
+  - trigger: ":lapa2"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: "curl -LSs {{spdxrepo}}/Apache-2.0.txt | fold -s"
+          shell: wsl
+  - trigger: ":lhapa2"
+    replace: |
+      Copyright {{year}} {{owner}}
+      
+      Licensed under the Apache License, Version 2.0 (the "License");
+      you may not use this file except in compliance with the License.
+      You may obtain a copy of the License at
+      
+      http://www.apache.org/licenses/LICENSE-2.0
+      
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+    force_clipboard: true
+    vars:
+      - name: owner
+        tyoe: shell
+        params:
+          cmd: 'echo "${ESPANSO_LICENSE_OWNER:-\[name of copyright owner\]}"'
+          shell: wsl
+  - trigger: ":lhcapa2"
+    replace: |-
+      /*
+      {{body}}*/
+    force_clipboard: true
+    vars:
+      - name: body
+        type: match
+        params:
+          trigger: ":lhapa2"
+  - trigger: ":lbsd3"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: |
+            owner="${ESPANSO_LICENSE_OWNER:-\<owner\>}"
+            curl -LSs {{spdxrepo}}/BSD-3-Clause.txt \
+                | sed "/^Copyright (c)/ s/<year> <owner>/{{year}} ${owner}/" \
+                | fold -s
+          shell: wsl
+  - trigger: ":lbsd2"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: |
+            owner="${ESPANSO_LICENSE_OWNER:-\<owner\>}"
+            curl -LSs {{spdxrepo}}/BSD-2-Clause.txt \
+                | sed "/^Copyright (c)/ s/<year> <owner>/{{year}} ${owner}/" \
+                | fold -s
+          shell: wsl
+  - trigger: ":lgpl3"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: "curl -LSs {{spdxrepo}}/GPL-3.0-or-later.txt | fold -s"
+          shell: wsl
+  - trigger: ":lhgpl3"
+    replace: |
+      {{t_indent5}}<one line to give the program's name and a brief idea of what it does.>
+      {{t_indent5}}Copyright (C) {{year}}  {{owner}}
+      
+      {{t_indent5}}This program is free software: you can redistribute it and/or modify it under
+      {{t_concat}}the terms of the GNU General Public License as published by the Free Software
+      {{t_concat}}Foundation, either version 3 of the License, or (at your option) any later
+      {{t_concat}}version.
+      
+      {{t_indent5}}This program is distributed in the hope that it will be useful, but WITHOUT
+      {{t_concat}}ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+      {{t_concat}}FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+      
+      {{t_indent5}}You should have received a copy of the GNU General Public License along with
+      {{t_concat}}this program.  If not, see <http://www.gnu.org/licenses/>.
+    force_clipboard: true
+    vars:
+      - name: owner
+        tyoe: shell
+        params:
+          cmd: 'echo "${ESPANSO_LICENSE_OWNER:-\<name of author\>}"'
+          shell: wsl
+      - name: t_concat
+        type: echo
+        params:
+          echo: ""
+      - name: t_indent5
+        type: echo
+        params:
+          echo: ""
+  - trigger: ":lhcgpl3"
+    replace: |-
+      /*
+      {{body}}*/
+    force_clipboard: true
+    vars:
+      - name: body
+        type: match
+        params:
+          trigger: ":lhgpl3"
+  - trigger: ":llgp3"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: "curl -LSs {{spdxrepo}}/LGPL-3.0-or-later.txt | fold -s"
+          shell: wsl
+  - trigger: ":lmit"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: |
+            owner="${ESPANSO_LICENSE_OWNER:-\<copyright holders\>}"
+            curl -LSs {{spdxrepo}}/MIT.txt \
+                | sed "/^Copyright (c)/ s/<year> <copyright holders>/{{year}} ${owner}/" \
+                | fold -s
+          shell: wsl
+  - trigger: ":lmpl2"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: "curl -LSs {{spdxrepo}}/MPL-2.0.txt | fold -s"
+          shell: wsl
+  - trigger: ":lhmpl2"
+    replace: |
+      {{t_indent2}}This Source Code Form is subject to the terms of the Mozilla Public
+      {{t_indent2}}License, v. 2.0. If a copy of the MPL was not distributed with this
+      {{t_indent2}}file, You can obtain one at https://mozilla.org/MPL/2.0/.
+    force_clipboard: true
+    vars:
+      - name: t_indent2
+        type: echo
+        params:
+          echo: ""
+  - trigger: ":lhcmpl2"
+    replace: |-
+      /*
+      {{body}}*/
+    force_clipboard: true
+    vars:
+      - name: body
+        type: match
+        params:
+          trigger: ":lhmpl2"
+  - trigger: ":lcdd1"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: "curl -LSs {{spdxrepo}}/CDDL-1.1.txt | fold -s"
+          shell: wsl
+  - trigger: ":lepl2"
+    replace: "{{text}}"
+    force_clipboard: true
+    vars:
+      - name: text
+        type: shell
+        params:
+          cmd: "curl -LSs {{spdxrepo}}/EPL-2.0.txt | fold -s"
+          shell: wsl
+

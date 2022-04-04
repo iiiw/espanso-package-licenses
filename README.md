@@ -25,7 +25,7 @@ Create a LICENSE file at the root of your project. Trigger `:lapa2` to insert:
 To place the header for the Apache License 2.0, trigger `:lhapa2` from the first line of your source file:
 
 ```
-    Copyright 2021 <owner>
+    Copyright 2021 John Doe
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ The triggers are `:l<ID>` and `:lh<ID>`, for license text and header. The `:lhc<
 
 `ID` is an abbreviation of the [SPDX short identifier](https://spdx.org/licenses/).
 
-The selection of licenses is based on <https://opensource.org/licenses>. They are retrieved from the [SPDX license list data repository](https://github.com/spdx/license-list-data). Please file an issue, if you need other licenses.
+The selection of licenses is based on <https://opensource.org/licenses>, and the licenses are retrieved from the [SPDX license list data repository](https://github.com/spdx/license-list-data). Please file an issue, if you need other licenses.
 
 
 | Full Name                                       | SPDX Identifier   | ID   | Trigger (Text) | Trigger (Header)  |
@@ -57,24 +57,32 @@ The selection of licenses is based on <https://opensource.org/licenses>. They ar
 
 ## Placeholders
 
-Some licenses use placeholders. The year placeholder is always replaced by the current year. If the license has an owner placeholder, the cursor is placed before it.
+Some licenses use placeholders. The year placeholder is always replaced by the current year. If the license has an owner placeholder, the [global variable](https://espanso.org/docs/matches/basics/#global-variables) `$ESPANSO_LICENSE_OWNER` is injected, if set.
 
 | Placeholder                                           | Substitution                        |
 | ---                                                   | ---                                 |
 | `<year>`                                              | This year (`%Y` in strftime format) |
-| `<owner>`, `<name of author>`, `<copyright holder> …` | Cursor placed here ==>`|<owner>`    |
+| `<owner>`, `<name of author>`, `<copyright holder> …` | `$ESPANSO_LICENSE_OWNER` (if set)   |
 
+To nominate the license owner, add in `$CONFIG/match/base.yml`, for example:
+
+```
+global_vars:
+  - name: license_owner
+    type: echo
+    params:
+      echo: "John Doe"
+```
 
 ## Installation
 
-From source repo:
+From repository:
 
 ```
-espanso install licenses https://github.com/iiiw/espanso-package-licenses --external
+espanso install licenses --git https://github.com/iiiw/espanso-package-licenses --external
 ```
 
 ## Caveats
 
-1. Licenses are downloaded each time. If the connection is down, the expansion silently fails.
-2. It takes a few seconds for the cursor to move back to the (owner) placeholder. Do not leave the active window until the cursor has arrived.
-3. Not tested on Windows. If [WSL](https://docs.microsoft.com/en-us/windows/wsl/) is installed, the needed tools (curl, sed and fold) should be in place. Feedback welcome.
+1. Licenses are downloaded each time. If the connection is down, the expansion fails without notice.
+2. Not tested on Windows. If [WSL](https://docs.microsoft.com/en-us/windows/wsl/) is installed, the needed tools (curl, sed and fold) should be in place. Feedback welcome.
