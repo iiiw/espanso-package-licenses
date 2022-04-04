@@ -2,6 +2,10 @@
 
 ## v0.1.0 (11/04/2021)
 
+- [4f39461](https://github.com/iiiw/espanso-package-licenses/commit/4f39461cf65b7c3a1982d2797968bab3df28486e) Add MPL-2.0 license
+- [b2b5bba](https://github.com/iiiw/espanso-package-licenses/commit/b2b5bba648edd448dacfda6514118bedea052e88) Fix triggers for license text
+- [02ff620](https://github.com/iiiw/espanso-package-licenses/commit/02ff62050fe33c8ea8754f23017b883604ebfc92) Update CHANGELOG
+- [768a44f](https://github.com/iiiw/espanso-package-licenses/commit/768a44f68a348d55314e060588d6bde2a182165b) Update CHANGELOG
 - [4fb880c](https://github.com/iiiw/espanso-package-licenses/commit/4fb880c3e8fe7d81d01d54cf044ac40080b64431) Fix package.yml: variables not evaluated
 - [add680f](https://github.com/iiiw/espanso-package-licenses/commit/add680f82eef0ea35d2a11757916740ad82c5d8d) Add CHANGELOG
 - [174cd5c](https://github.com/iiiw/espanso-package-licenses/commit/174cd5c3d007f931e1a819884f9b8942584c86cb) Add tests and tooling

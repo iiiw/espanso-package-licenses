@@ -1,7 +1,7 @@
 # espanso-package-licenses
 
 License text and boilerplate for popular open source licenses.
-Generate license texts and headers on the fly.
+Generate license text and headers on the fly.
 
 
 ## Usage
@@ -35,9 +35,11 @@ To place the header for the Apache License 2.0, trigger `:lhapa2` from the first
 
 ## Triggers and Licenses
 
-The triggers are `:l<ID>` and `:lh<ID>`, for the license text and the license header, respectively. The `:lhc<ID>` trigger additionally wraps the header in a C-style block comment. `ID` is a shortened version of the [SPDX short identifier](https://spdx.org/licenses/).
+The triggers are `:l<ID>` and `:lh<ID>`, for license text and header. The `:lhc<ID>` trigger additionally wraps the header in a C-style block comment.
 
-Here is a list of the included licenses with their triggers. The licenses are retrieved from the [SPDX license list data repository](https://github.com/spdx/license-list-data). The selection is based on <https://opensource.org/licenses>. If you need more, please file an issue.
+`ID` is an abbreviation of the [SPDX short identifier](https://spdx.org/licenses/).
+
+The selection of licenses is based on <https://opensource.org/licenses>. They are retrieved from the [SPDX license list data repository](https://github.com/spdx/license-list-data). Please file an issue, if you need other licenses.
 
 
 | Full Name                                       | SPDX Identifier   | ID   | Trigger (Text) | Trigger (Header)  |
@@ -48,19 +50,19 @@ Here is a list of the included licenses with their triggers. The licenses are re
 | GNU General Public License v3.0 or later        | GPL-3.0-or-later  | gpl3 | :lgpl3         | :lhgpl3, :lhcgpl3 |
 | GNU Lesser General Public License v3.0 or later | LGPL-3.0-or-later | lgp3 | :llgp3         |                   |
 | MIT License                                     | MIT               | mit  | :lmit          |                   |
-| Mozilla Public License 2.0                      | MPL-2.0           | mpl2 | :lmpl2         |                   |
+| Mozilla Public License 2.0                      | MPL-2.0           | mpl2 | :lmpl2         | :lhmpl2, :lhcmpl2 |
 | Common Development and Distribution License 1.1 | CDDL-1.1          | cdd1 | :lcdd1         |                   |
 | Eclipse Public License 2.0                      | EPL-2.0           | epl2 | :lepl2         |                   |
 
 
 ## Placeholders
 
-Some licenses use placeholders. The year placeholder is always replaced. If the license has an owner placeholder, the cursor is placed before it.
+Some licenses use placeholders. The year placeholder is always replaced by the current year. If the license has an owner placeholder, the cursor is placed before it.
 
-| Placeholder                                         | Substitution                        |
-| ---                                                 | ---                                 |
-| `<year>`                                            | This year (`%Y` in strftime format) |
-| `<owner>`, `<name of author>`, `<copyright holder>` | n/a (cursor placed before)          |
+| Placeholder                                           | Substitution                        |
+| ---                                                   | ---                                 |
+| `<year>`                                              | This year (`%Y` in strftime format) |
+| `<owner>`, `<name of author>`, `<copyright holder> …` | Cursor placed here ==>`|<owner>`    |
 
 
 ## Installation
@@ -73,6 +75,6 @@ espanso install licenses https://github.com/iiiw/espanso-package-licenses --exte
 
 ## Caveats
 
-1. Licenses are downloaded again each time. Without internet connection the expansion silently fails.
-2. It may take a few seconds for the cursor to run back to the (owner) placeholder, especially with longer licenses. Do not leave the active window until the cursor has arrived.
-3. Not tested on Windows. If [WSL](https://docs.microsoft.com/en-us/windows/wsl/) is installed, the needed tools (curl and sed) should be in place. Feedback welcome.
+1. Licenses are downloaded each time. If the connection is down, the expansion silently fails.
+2. It takes a few seconds for the cursor to move back to the (owner) placeholder. Do not leave the active window until the cursor has arrived.
+3. Not tested on Windows. If [WSL](https://docs.microsoft.com/en-us/windows/wsl/) is installed, the needed tools (curl, sed and fold) should be in place. Feedback welcome.
