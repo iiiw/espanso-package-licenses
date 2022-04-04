@@ -7,34 +7,8 @@ defaults:
   run:
     shell: bash
 jobs:
-  get-version:
-    runs-on: ubuntu-latest
-    outputs:
-      latest: ${{ steps.latest-version.outputs.VERSION }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Get the latest version
-        id: latest-version
-        working-directory: 'licenses'
-        run: |
-          versions=( $(ls | grep -E '^[0-9]+\.' | sort -rV) )
-          for v in "${versions[@]}"; do
-            if [[ -f "$v/package.yml" ]]; then
-              VERSION="$v"
-              break
-            fi
-          done
-          if [[ -z "$VERSION" ]]; then
-            echo "::error::Cannot get latest version"
-            exit 1
-          fi
-          echo "::set-output name=VERSION::$VERSION"
   test-config:
     runs-on: ubuntu-latest
-    needs: get-version
-    env:
-      VERSION: ${{ needs.get-version.outputs.latest }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -62,4 +36,4 @@ jobs:
             echo "::error::Missing test dependency tools/$test_dep"
             exit 1
           fi
-          ./"$test_file" ../licenses/"$VERSION"/package.yml
+          ./"$test_file" ../licenses/package.yml

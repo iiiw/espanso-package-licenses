@@ -1,0 +1,7 @@
+name: "licenses"
+title: "Open Source Licenses"
+description: "An Espanso package to to create license text and boilerplate for popular open source licenses"
+version: 0.2.0
+author: "Christian Wille"
+homepage: "https://github.com/iiiw/espanso-package-licenses"
+
