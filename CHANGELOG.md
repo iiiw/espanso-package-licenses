@@ -1,7 +1,9 @@
 # Changelog
 
-## v0.1.0 (11/04/2021)
+## v0.1.0 (04/04/2022)
 
+- [a5e393d](https://github.com/iiiw/espanso-package-licenses/commit/a5e393d3d4f002ee9a9ed9b951b16c00148bcd06) Fix license header test
+- [5121768](https://github.com/iiiw/espanso-package-licenses/commit/5121768afde208d8535a37df7e09de20ef416883) Update README.md CHANGELOG
 - [4f39461](https://github.com/iiiw/espanso-package-licenses/commit/4f39461cf65b7c3a1982d2797968bab3df28486e) Add MPL-2.0 license
 - [b2b5bba](https://github.com/iiiw/espanso-package-licenses/commit/b2b5bba648edd448dacfda6514118bedea052e88) Fix triggers for license text
 - [02ff620](https://github.com/iiiw/espanso-package-licenses/commit/02ff62050fe33c8ea8754f23017b883604ebfc92) Update CHANGELOG
