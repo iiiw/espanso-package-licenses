@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.0 (04/04/2022)
+
+- [f947cb2](https://github.com/iiiw/espanso-package-licenses/commit/f947cb2a3885c14ef098e0e4d2e20765d88cfc33) New package.yml: trying to inject the license owner
+- [f4cd10c](https://github.com/iiiw/espanso-package-licenses/commit/f4cd10c752caedcb948641d41aa32f822cb81f83) Update to new (Espanso v2) package layout
+- [b4836e8](https://github.com/iiiw/espanso-package-licenses/commit/b4836e81414ecbdc5a5d76038c9a22cfb4f2d508) Update CHANGELOG
+
 ## v0.1.0 (04/04/2022)
 
 - [a5e393d](https://github.com/iiiw/espanso-package-licenses/commit/a5e393d3d4f002ee9a9ed9b951b16c00148bcd06) Fix license header test
