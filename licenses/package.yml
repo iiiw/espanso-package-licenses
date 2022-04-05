@@ -44,10 +44,12 @@ matches:
       limitations under the License.
     force_clipboard: true
     vars:
+      - name: license_owner
+        type: global
       - name: owner
-        tyoe: shell
+        type: shell
         params:
-          cmd: 'echo "${ESPANSO_LICENSE_OWNER:-\[name of copyright owner\]}"'
+          cmd: echo "${ESPANSO_LICENSE_OWNER:-[name of copyright owner]}"
           shell: wsl
   - trigger: ":lhcapa2"
     replace: |-
@@ -63,6 +65,8 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: license_owner
+        type: global
       - name: text
         type: shell
         params:
@@ -76,6 +80,8 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: license_owner
+        type: global
       - name: text
         type: shell
         params:
@@ -112,10 +118,12 @@ matches:
       {{t_concat}}this program.  If not, see <http://www.gnu.org/licenses/>.
     force_clipboard: true
     vars:
+      - name: license_owner
+        type: global
       - name: owner
-        tyoe: shell
+        type: shell
         params:
-          cmd: 'echo "${ESPANSO_LICENSE_OWNER:-\<name of author\>}"'
+          cmd: echo "${ESPANSO_LICENSE_OWNER:-<name of author>}"
           shell: wsl
       - name: t_concat
         type: echo
@@ -148,6 +156,8 @@ matches:
     replace: "{{text}}"
     force_clipboard: true
     vars:
+      - name: license_owner
+        type: global
       - name: text
         type: shell
         params:
