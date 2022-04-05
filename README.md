@@ -39,8 +39,7 @@ The triggers are `:l<ID>` and `:lh<ID>`, for license text and header. The `:lhc<
 
 `ID` is an abbreviation of the [SPDX short identifier](https://spdx.org/licenses/).
 
-The selection of licenses is based on <https://opensource.org/licenses>, and the licenses are retrieved from the [SPDX license list data repository](https://github.com/spdx/license-list-data). Please file an issue, if you need other licenses.
-
+The selection of licenses is based on <https://opensource.org/licenses>. They are retrieved from the [SPDX license list data repository](https://github.com/spdx/license-list-data). Please file an issue, if you need other licenses.
 
 | Full Name                                       | SPDX Identifier   | ID   | Trigger (Text) | Trigger (Header)  |
 | ---                                             | ---               | ---  | ---            | ---               |
@@ -57,14 +56,14 @@ The selection of licenses is based on <https://opensource.org/licenses>, and the
 
 ## Placeholders
 
-Some licenses use placeholders. The year placeholder is always replaced by the current year. If the license has an owner placeholder, the [global variable](https://espanso.org/docs/matches/basics/#global-variables) `$ESPANSO_LICENSE_OWNER` is injected, if set.
+Some licenses use placeholders. The year placeholder is always replaced by the current year. If the license has an owner placeholder, the [global variable](https://espanso.org/docs/matches/basics/#global-variables) `$ESPANSO_LICENSE_OWNER` is injected. If this variable is not set, the placeholder is not replaced.
 
 | Placeholder                                           | Substitution                        |
 | ---                                                   | ---                                 |
 | `<year>`                                              | This year (`%Y` in strftime format) |
 | `<owner>`, `<name of author>`, `<copyright holder> …` | `$ESPANSO_LICENSE_OWNER` (if set)   |
 
-To nominate the license owner, add in `$CONFIG/match/base.yml`, for example:
+To define the license owner, add (for example) in `$CONFIG/match/base.yml`:
 
 ```
 global_vars:
