@@ -2,6 +2,7 @@
 
 ## v0.2.0 (04/04/2022)
 
+- [cebf66e](https://github.com/iiiw/espanso-package-licenses/commit/cebf66e906496e800fc5206ad9575b0e1494c039) Fix package.yml: detect global var license_owner
 - [f947cb2](https://github.com/iiiw/espanso-package-licenses/commit/f947cb2a3885c14ef098e0e4d2e20765d88cfc33) New package.yml: trying to inject the license owner
 - [f4cd10c](https://github.com/iiiw/espanso-package-licenses/commit/f4cd10c752caedcb948641d41aa32f822cb81f83) Update to new (Espanso v2) package layout
 - [b4836e8](https://github.com/iiiw/espanso-package-licenses/commit/b4836e81414ecbdc5a5d76038c9a22cfb4f2d508) Update CHANGELOG
